@@ -1,32 +1,48 @@
-//JSON Schema Validation in Postman:
+JSON Schema Validation in Postman:
 
-/*Step 1: Create a Schema Variable
-In Postman Test Script:*/
+Step 1: Create a Schema Variable
+In Postman Test Script:
 
-var schema = {
-    "type": "object",
-    "properties": {
-        "id": {
-            "type": "number"
-        },
-        "name": {
-            "type": "string"
-        },
-        "phone": {
-            "type": "string"
-        },
-        "courses": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
-        }
-    },
-    "required": [
-        "id",
-        "name",
-        "phone",
-        "courses"
-    ]
-};
+eg:-
+        var schema = {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "courses": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "phone",
+                "courses"
+            ]
+        };
 
+
+**Why Do We Create a Variable?
+We create:
+    -----var schema-----
+Becuase:
+    1.It stores the entire schema.
+    2.Code becomes cleaner.
+    3.Schema can be reused.
+    4.Large schemas become easier to manage.
+
+Step 2: Validate the Schema:
+
+        pm.test("Schema Validation", function () {
+            pm.response.to.have.jsonSchema(schema);
+        });
